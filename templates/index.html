@@ -8,11 +8,12 @@
 <h1>These are all my friends!</h1>
 <!-- with all the data we can then construct a more structured output -->
 {% for friend in all_friends: %}
-   <p>ID: {{ friend['id'] }}</p>
-   <p>First Name: {{ friend['first_name'] }}</p>
-   <p>Last Name: {{ friend['last_name'] }}</p>
-   <p>Occupation: {{ friend['occupation'] }}</p>
-   <hr>
+   <p>
+     <a href='/friends/{{friend['id']}}'>{{ friend['name'] }}</a>
+     <form action="/friends/{{friend['id']}}/delete" method="post">
+       <input type="submit" value="Delete User">
+     </form>
+   </p>
 {% endfor %}
   <h2>Add a Friend</h2>
   <form action='/friends' method='POST'>

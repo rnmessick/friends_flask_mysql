@@ -9,7 +9,7 @@ class MySQLConnection(object):
                 'database': db, # we got db as an arguement
                 'user': 'root',
                 'password': 'root',
-                'port': '3306' # change the port to match the port your SQL server is running on
+                'port': '8889' # change the port to match the port your SQL server is running on
         }
         # this will use the above values to generate the path to connect to your sql database
         DATABASE_URI = "mysql://{}:{}@127.0.0.1:{}/{}".format(config['user'], config['password'], config['port'], config['database'])
@@ -27,7 +27,7 @@ class MySQLConnection(object):
             # return the results as a list of dictionaries
             return list_result
         elif query[0:6].lower() == 'insert':
-            # if the query was an insert, return the id of the 
+            # if the query was an insert, return the id of the
             # commit changes
             self.db.session.commit()
             # row that was inserted
