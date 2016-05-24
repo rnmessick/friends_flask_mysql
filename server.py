@@ -11,15 +11,19 @@ def index():
 
 @app.route('/friends', methods=['POST'])
 def create():
+    print request.form
     # write our query as a string, notice how we have multiple values we want to
     # insert into our query
-    query = "INSERT INTO friends (first_name, last_name, occupation, created_at, updated_at) VALUES (:firstname, :lastname, :occupation, NOW(), NOW())"
+    query = "INSERT INTO friends (first_name, last_name, occupation, created_at, updated_at) VALUES (:first_name, :last_name, :occupation, NOW(), NOW())"
+
+    print query
     # we'll then create a dictionary of data from the POST data received
     data = {
-           'first_name': request.form['first_name'], 
+           'first_name': request.form['first_name'],
            'last_name':  request.form['last_name'],
            'occupation': request.form['occupation']
            }
+    print "DATA", data
     # run the query with the dictionary values injected into the query
     mysql.query_db(query, data)
     return redirect('/')
@@ -28,7 +32,7 @@ def create():
 def update(id):
     query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, occupation = :occupation WHERE id = :id"
     data = {
-           'first_name': request.form['first_name'], 
+           'first_name': request.form['first_name'],
            'last_name':  request.form['last_name'],
            'occupation': request.form['occupation'],
            'id': friend_id
