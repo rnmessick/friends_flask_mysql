@@ -18,6 +18,12 @@ $(document).ready(function(){
     deleteFriend(friendID)
   })
 
+  $('div.friends').on('click', 'a', function(e){
+    e.preventDefault()
+    var friendID = $(this).attr('data-id')
+    showFriend(friendID)
+  })
+
 })
 
 function createFriend(newFriend){
@@ -36,6 +42,7 @@ function getFriends(){
     url: '/get_friends',
     method: 'GET',
     success: function( friendsTemplate ) {
+      $('.friend').html('')
       $('.friends').html(friendsTemplate)
     }
   })
@@ -46,6 +53,16 @@ function deleteFriend(id){
     url: `/friends/${id}/delete`,
     method: 'POST',
     success: getFriends
+  })
+}
+
+function showFriend(){
+  $.ajax({
+    url: `/friends/${id}`,
+    success: function( friendTemplate ){
+      $('.friends').html('')
+      $('.friend').html(friendTemplate)
+    }
   })
 }
 

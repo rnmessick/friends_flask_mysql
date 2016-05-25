@@ -3,7 +3,7 @@
 <!-- with all the data we can then construct a more structured output -->
 {% for friend in all_friends: %}
   <p>
-    <a href='/friends/{{friend['id']}}'>{{ friend['name'] }}</a>
+    <a href='#' data-id="{{friend['id']}}">{{ friend['name'] }}</a>
     <button class='delete' data-id="{{friend['id']}}">Delete User</button>
   </p>
 {% endfor %}
