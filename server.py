@@ -5,9 +5,13 @@ mysql = MySQLConnector(app, 'friendsdb')
 
 @app.route('/')
 def index():
+    return render_template('index.html') # pass the data to our template
+
+@app.route('/get_friends', methods=["GET"])
+def get_friends():
     query = "SELECT id, concat(first_name, ' ', last_name) as name FROM friends" # define your query
     friends = mysql.query_db(query) # run the query with the query_db method
-    return render_template('index.html', all_friends=friends) # pass the data to our template
+    return render_template('friends.html', all_friends=friends) # pass the data to our template
 
 @app.route('/friends', methods=['POST'])
 def create():

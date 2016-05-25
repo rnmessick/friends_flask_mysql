@@ -1,26 +1,21 @@
 <html>
 <head>
   <title>Friends</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="{{url_for('static', filename='friends.js')}}" charset="utf-8"></script>
 </head>
 <body>
-<!-- we can use the line below to see all of our data in our template -->
-{{ friends }}
-<h1>These are all my friends!</h1>
-<!-- with all the data we can then construct a more structured output -->
-{% for friend in all_friends: %}
-   <p>
-     <a href='/friends/{{friend['id']}}'>{{ friend['name'] }}</a>
-     <form action="/friends/{{friend['id']}}/delete" method="post">
-       <input type="submit" value="Delete User">
-     </form>
-   </p>
-{% endfor %}
-  <h2>Add a Friend</h2>
-  <form action='/friends' method='POST'>
-    <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
-    <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
-    <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
-    <input type="submit" value="Add">
-  </form>
+  <div class="friend">
+  </div>
+  <div class="friends">
+  </div>
+  <!-- we can use the line below to see all of our data in our template -->
+    <h2>Add a Friend</h2>
+    <form class='create' action='/friends' method='POST'>
+      <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+      <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+      <label for="occupation">Occupation:<input type="text" name="occupation" id="occupation"></label>
+      <input type="submit" value="Add">
+    </form>
 </body>
 </html>
